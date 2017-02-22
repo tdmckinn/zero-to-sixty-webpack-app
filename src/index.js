@@ -8,8 +8,6 @@ import {
 import App from './App'
 import axios from 'axios'
 
-import 'bulma'
-
 ReactDOM.render( 
   <Router>
     <App />
