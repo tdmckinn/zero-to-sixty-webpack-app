@@ -1,0 +1,10 @@
+
+.z60-app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.z60-main {
+  flex: 1
+}
