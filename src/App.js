@@ -10,8 +10,12 @@ import { Entity, Scene } from 'aframe-react'
 import { Doughnut } from 'react-chartjs-2'
 import 'medium-editor'
 import 'matter-js'
+import 'chance'
 
 import './lorem/loremPageOne'
+import './lorem/loremPageTwo'
+import './lorem/loremPageThree'
+
 import { Header, Footer, Clock } from 'components'
 import './index.css'
 
