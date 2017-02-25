@@ -1,9 +1,10 @@
-var webpackConfig = require('./webpack.config')
-var path = require('path')
-var express = require('express')
-var webpack = require('webpack')
-var proxyMiddleware = require('http-proxy-middleware')
-var config = {
+const webpackConfig = require('./build/webpack.dev.config')
+const path = require('path')
+const express = require('express')
+const webpack = require('webpack')
+const DashboardPlugin = require('webpack-dashboard/plugin')
+
+const config = {
   dev: {
     assetsPublicPath: '/',
     assetsSubDirectory: 'static',
@@ -11,19 +12,21 @@ var config = {
   }
 }
 // default port where dev server listens for incoming traffic
-var port = process.env.PORT || config.dev.port
+const port = process.env.PORT || config.dev.port
 
-var app = express()
-var compiler = webpack(webpackConfig)
+const app = express()
+const compiler = webpack(webpackConfig)
 
-var devMiddleware = require('webpack-dev-middleware')(compiler, {
+compiler.apply(new DashboardPlugin());
+
+const devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true
 })
 
-var hotMiddleware = require('webpack-hot-middleware')(compiler, {
+const hotMiddleware = require('webpack-hot-middleware')(compiler, {
   log: () => {}
-}) 
+})
 
 // app.use(require('connect-history-api-fallback')())
 
@@ -33,16 +36,15 @@ app.use(devMiddleware)
 // enable hot-reload and state-preserving
 // compilation error display
 app.use(hotMiddleware)
- 
-var uri = 'http://localhost:' + port
 
-devMiddleware.waitUntilValid(function () {
+const uri = `http://localhost:${port}`
+
+devMiddleware.waitUntilValid(() => {
   console.log(`> Listening at ${uri}`)
 })
 
-app.listen(port, function (err) {
+app.listen(port, (err) => {
   if (err) {
     console.log(err)
-    return
   }
 })

@@ -15,12 +15,12 @@ const Header = () => (
       <div className="nav-center">
         <a className="nav-item">
           <span className="icon">
-            <i className="fa fa-github"></i>
+            <i className="fa fa-github" />
           </span>
         </a>
         <a className="nav-item">
           <span className="icon">
-            <i className="fa fa-twitter"></i>
+            <i className="fa fa-twitter" />
           </span>
         </a>
       </div>
@@ -28,24 +28,21 @@ const Header = () => (
         <span></span>
         <span></span>
         <span></span>
-      </span> 
+      </span>
       <div className="nav-right nav-menu">
-        <a className="nav-item">
+        <Link className="nav-item" to="/charts">
           Charts
-        </a>
-        <a className="nav-item">
+        </Link>
+        <Link className="nav-item" to="/d3">
           D3
-        </a>
-        <a className="nav-item">
+        </Link>
+        <Link className="nav-item" to="/aframe">
           Aframe
-        </a>
-        <a className="nav-item">
-          Editor
-        </a>
+        </Link>
         <span className="nav-item">
           <Link to="/about" className="button is-primary">
             <span className="icon">
-              <i className="fa fa-window-maximize" aria-hidden="true"></i>
+              <i className="fa fa-window-maximize" aria-hidden="true" />
             </span>
             <span>Modal</span>
           </Link>
