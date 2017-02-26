@@ -17,7 +17,7 @@ const port = process.env.PORT || config.dev.port
 const app = express()
 const compiler = webpack(webpackConfig)
 
-compiler.apply(new DashboardPlugin());
+compiler.apply(new DashboardPlugin())
 
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
@@ -28,7 +28,7 @@ const hotMiddleware = require('webpack-hot-middleware')(compiler, {
   log: () => {}
 })
 
-// app.use(require('connect-history-api-fallback')())
+app.use(require('connect-history-api-fallback')())
 
 // serve webpack bundle output
 app.use(devMiddleware)

@@ -13,12 +13,12 @@ const Header = () => (
         </Link>
       </div>
       <div className="nav-center">
-        <a className="nav-item">
+        <a className="nav-item" href="https://github.com/tdmckinn/zero-to-sixty-webpack-app">
           <span className="icon">
             <i className="fa fa-github" />
           </span>
         </a>
-        <a className="nav-item">
+        <a className="nav-item" href="https://twitter/tirellmckinnon">
           <span className="icon">
             <i className="fa fa-twitter" />
           </span>

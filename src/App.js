@@ -3,13 +3,11 @@ import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
 
 import 'aframe'
-import 'chance'
-import 'd3'
 import 'matter-js'
 
 import { Entity, Scene } from 'aframe-react'
 import { Doughnut } from 'react-chartjs-2'
-import { VictoryPie } from 'victory';
+import { VictoryChart, VictoryBar, VictoryLine } from 'victory';
 
 import { Header, Footer, Clock } from './components'
 import chartConfig from './chartConfig'
@@ -32,8 +30,6 @@ const Home = ({ timer }) => (
 
 const VRScene = () => (
   <Scene embedded>
-    <Entity sky={{ primitive: 'box' }} src="" />
-    <Entity bmfont-text={{ text: 'HELLO WORLD' }} position="{[0, 1, -5]}" />
     <a-sky
       src="https://raw.githubusercontent.com/aframevr/aframe/v0.5.0/examples/boilerplate/panorama/puydesancy.jpg"
       rotation="0 -130 0"
@@ -47,9 +43,35 @@ const Charts = () => (
   </div>
 )
 
+const style = {
+  parent: { border: '1px solid #ccc', margin: '2%', maxWidth: '40%' }
+}
 const D3 = () => (
   <div>
-    <VictoryPie style={{ border: '1px solid #ccc', margin: '2%', maxWidth: '40%' }} />
+    <VictoryChart
+      style={style}
+      domainPadding={{ x: 30, y: 30 }}
+      height={600}
+      width={600}
+    >
+      <VictoryBar
+        name="bar"
+        style={{ data: { width: 15, fill: 'green' } }}
+        data={[
+          { x: 1, y: 1 },
+          { x: 2, y: 2 },
+          { x: 3, y: 3 },
+          { x: 4, y: 2 },
+          { x: 5, y: 1 }
+        ]}
+      />
+      <VictoryLine
+        name="line"
+        y={() => 0.5}
+        style={{ data: { stroke: 'blue', strokeWidth: 5 } }}
+        label="LINE"
+      />
+    </VictoryChart>
   </div>
 )
 

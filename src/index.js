@@ -3,14 +3,24 @@ import ReactDOM from 'react-dom'
 import {
   BrowserRouter as Router
 } from 'react-router-dom'
-
-// import { D3Page, VRPage, ThreePage} from './pages'
-import App from './App'
 import axios from 'axios'
 
-ReactDOM.render( 
-  <Router>
-    <App />
-  </Router>,
-  document.getElementById('root')
-)
+import App from './App'
+
+const render = (Component) => {
+  ReactDOM.render(
+    <Router>
+      <Component />
+    </Router>,
+    document.getElementById('root')
+  )
+}
+render(App)
+
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    window.location.reload()
+    // const NextApp = require('./App').default
+    // render(NextApp)
+  })
+}

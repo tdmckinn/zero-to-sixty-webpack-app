@@ -1,14 +1,28 @@
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const merge = require('webpack-merge')
+const webpack = require('webpack')
 
 process.env.NODE_ENV = 'devlopment'
 
-const config = {
-  entry: path.resolve(__dirname, '../src/index.js'),
+const hmrConfig = {
+  entry: [
+    'webpack-hot-middleware/client'
+  ],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin()
+  ]
+}
+
+const commonConfig = {
+  entry: [
+    path.resolve(__dirname, '../src/index.js')
+  ],
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, '../dist')
+    path: path.resolve(__dirname, '../dist'),
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -37,6 +51,7 @@ const config = {
       inject: true
     })
   ],
+  devtool: '#eval-source-map',
   resolve: {
     modules: [
       'src',
@@ -45,5 +60,7 @@ const config = {
     extensions: ['.js', '.json']
   }
 }
+
+const config = merge(hmrConfig, commonConfig)
 
 module.exports = config

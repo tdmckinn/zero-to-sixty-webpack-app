@@ -9,8 +9,7 @@ const Footer = () => (
         </p>
         <p>
           <a className="icon" href="https://github.com/">
-            <i 
-            className="fa fa-github"></i>
+            <i className="fa fa-github" />
           </a>
         </p>
       </div>
