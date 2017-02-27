@@ -1,4 +1,4 @@
-const webpackConfig = require('./build/webpack.dev.config')
+const webpackConfig = require('./configs/webpack.dev.config')
 const path = require('path')
 const express = require('express')
 const webpack = require('webpack')
