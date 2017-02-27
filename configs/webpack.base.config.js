@@ -16,16 +16,6 @@ const config = {
         use: 'babel-loader',
         include: path.resolve(__dirname, '../src'),
         exclude: /node_modules/
-      },
-      {
-        test: /\.(css|scss|sass)/,
-        use: [{
-          loader: 'style-loader'
-        }, {
-          loader: 'css-loader'
-        }, {
-          loader: 'sass-loader'
-        }]
       }
     ]
   },

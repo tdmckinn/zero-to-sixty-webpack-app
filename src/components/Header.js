@@ -25,9 +25,9 @@ const Header = () => (
         </a>
       </div>
       <span className="nav-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span />
+        <span />
+        <span />
       </span>
       <div className="nav-right nav-menu">
         <Link className="nav-item" to="/charts">

@@ -23,6 +23,20 @@ const hmrConfig = {
 
 const commonConfig = {
   devtool: '#eval-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.(css|scss|sass)/,
+        use: [{
+          loader: 'style-loader'
+        }, {
+          loader: 'css-loader'
+        }, {
+          loader: 'sass-loader'
+        }]
+      }
+    ]
+  }
 }
 
 const config = merge(hmrConfig, baseWebpackConfig, commonConfig)

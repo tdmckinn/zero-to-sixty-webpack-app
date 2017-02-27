@@ -10,9 +10,17 @@ process.env.NODE_ENV = 'production'
 
 const prodConfig = {
   devtool: 'source-map',
+  module: {
+    rules: [
+      {
+        test: /\.(css|scss|sass)/,
+        use: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
+      }
+    ]
+  },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': '"production"'
+      'process.env.NODE_ENV': '"production"'
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -28,7 +36,7 @@ const prodConfig = {
         removeComments: true,
         collapseWhitespace: true
       }
-    }),
+    })
   ]
 }
 

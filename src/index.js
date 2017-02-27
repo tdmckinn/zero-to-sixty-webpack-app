@@ -15,8 +15,10 @@ const render = (Component) => {
 }
 render(App)
 
-if (module.hot) {
-  module.hot.accept('./App', () => {
-    window.location.reload()
-  })
+if (process.env.NODE_ENV === 'development') {
+  if (module.hot) {
+    module.hot.accept('./App', () => {
+      window.location.reload()
+    })
+  }
 }
