@@ -1,7 +1,8 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const merge = require('webpack-merge')
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const baseWebpackConfig = require('./webpack.base.config')
 
 process.env.NODE_ENV = 'devlopment'
 
@@ -11,56 +12,19 @@ const hmrConfig = {
   ],
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
-  ]
-}
-
-const commonConfig = {
-  entry: [
-    path.resolve(__dirname, '../src/index.js')
-  ],
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, '../dist'),
-    publicPath: '/'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        use: 'babel-loader',
-        include: path.resolve(__dirname, '../src'),
-        exclude: /node_modules/
-      },
-      {
-        test: /\.(css|scss|sass)/,
-        use: [{
-          loader: 'style-loader'
-        }, {
-          loader: 'css-loader'
-        }, {
-          loader: 'sass-loader'
-        }]
-      }
-    ]
-  },
-  plugins: [
+    new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
       inject: true
     })
-  ],
-  devtool: '#eval-source-map',
-  resolve: {
-    modules: [
-      'src',
-      'node_modules'
-    ],
-    extensions: ['.js', '.json']
-  }
+  ]
 }
 
-const config = merge(hmrConfig, commonConfig)
+const commonConfig = {
+  devtool: '#eval-source-map',
+}
+
+const config = merge(hmrConfig, baseWebpackConfig, commonConfig)
 
 module.exports = config
