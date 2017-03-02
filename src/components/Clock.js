@@ -1,14 +1,10 @@
 import React from 'react'
-import moment from 'moment'
 import 'moment-timezone'
 
-const Clock = () => (
-  <figure>
-    <img
-      src="https://developer.cdn.mozilla.net/media/img/mdn-logo-sm.png"
-      alt="An awesome"
-    />
-    <figcaption>NY: { moment().tz('America/New_York').format() }</figcaption>
+const Clock = ({ timer, moment, locale }) => (
+  <figure className="clock-figure">
+    <h1 className="title">{locale}</h1>
+    <figcaption>{ moment.add(timer, 'seconds').format('dddd, MMMM Do YYYY, h:mm:ss a') }</figcaption>
   </figure>
 )
 

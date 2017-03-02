@@ -1,6 +1,7 @@
 import * as _ from 'lodash'
 import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
+import moment from 'moment'
 
 import 'aframe'
 import 'matter-js'
@@ -13,15 +14,46 @@ import { Header, Footer, Clock } from './components'
 import chartConfig from './chartConfig'
 import './index.scss'
 
+const locales = [
+  'en',
+  'en_ca',
+  'tr',
+  'cv',
+  'he',
+  'mi',
+  'en-bg',
+  'be',
+  'gd',
+  'si',
+  'fo'
+]
+
+const zones = _.shuffle(locales)
+
+console.log(moment.locales())
+
 const Home = ({ timer }) => (
   <div>
-    <section className="hero is-primary is-large">
+    <section className="hero is-primary is-medium">
       <div className="hero-body">
         <div className="container has-text-centered">
           <h1 className="title">
+            Moment Locales
+          </h1>
+          <h1 className="title">
             0 <span>....</span> <span> { timer }</span>
           </h1>
-          <Clock />
+          <div className="z60-times--live">
+            {
+              zones.map((locale, index) => {
+                const mymoment = new moment()
+                mymoment.locale(locale)
+                return (
+                  <Clock key={index} timer={timer} moment={mymoment} locale={locale} />
+                )
+              })
+            }
+          </div>
         </div>
       </div>
     </section>

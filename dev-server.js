@@ -1,5 +1,4 @@
 const webpackConfig = require('./configs/webpack.dev.config')
-const path = require('path')
 const express = require('express')
 const webpack = require('webpack')
 const DashboardPlugin = require('webpack-dashboard/plugin')

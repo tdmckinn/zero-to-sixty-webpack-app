@@ -5,7 +5,7 @@ const chartConfig = {
     'Yellow'
   ],
   datasets: [{
-    data: [300, 50, 100],
+    data: [300, 60, 100],
     backgroundColor: [
       '#FF6384',
       '#36A2EB',
