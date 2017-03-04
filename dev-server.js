@@ -7,7 +7,7 @@ const config = {
   dev: {
     assetsPublicPath: '/',
     assetsSubDirectory: 'static',
-    port: 8080
+    port: 7777
   }
 }
 // default port where dev server listens for incoming traffic

@@ -23,19 +23,14 @@ const prodConfig = {
       'process.env.NODE_ENV': '"production"'
     }),
     new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
+      compress: { warnings: false }
     }),
     new ExtractTextPlugin('static/css/[name].[contenthash].css'),
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, '../dist/index.html'),
       template: 'index.html',
       inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true
-      }
+      minify: { removeComments: true, collapseWhitespace: true }
     })
   ]
 }

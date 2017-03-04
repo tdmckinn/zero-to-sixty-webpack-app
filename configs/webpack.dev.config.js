@@ -1,15 +1,12 @@
 const merge = require('webpack-merge')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
 const baseWebpackConfig = require('./webpack.base.config')
 
 process.env.NODE_ENV = 'devlopment'
 
 const hmrConfig = {
-  entry: [
-    'webpack-hot-middleware/client'
-  ],
+  entry: ['webpack-hot-middleware/client'],
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
@@ -22,18 +19,15 @@ const hmrConfig = {
 }
 
 const commonConfig = {
-  devtool: '#eval-source-map',
+  devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
       {
         test: /\.(css|scss|sass)/,
-        use: [{
-          loader: 'style-loader'
-        }, {
-          loader: 'css-loader'
-        }, {
-          loader: 'sass-loader'
-        }]
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' }]
       }
     ]
   }
