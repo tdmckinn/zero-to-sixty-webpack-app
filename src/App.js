@@ -1,111 +1,15 @@
-import * as _ from 'lodash'
 import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
-import moment from 'moment'
+import { Route } from 'react-router-dom'
 
-import 'aframe'
 import 'matter-js'
 
-import { Entity, Scene } from 'aframe-react'
-import { Doughnut } from 'react-chartjs-2'
-import { VictoryChart, VictoryBar, VictoryLine } from 'victory';
-
-import { Header, Footer, Clock } from './components'
-import chartConfig from './chartConfig'
+import { Header, Footer } from './components'
 import './index.scss'
 
-const locales = [
-  'en',
-  'en_ca',
-  'tr',
-  'cv',
-  'he',
-  'mi',
-  'en-bg',
-  'be',
-  'gd',
-  'si',
-  'fo'
-]
-
-const zones = _.shuffle(locales)
-
-console.log(moment.locales())
-
-const Home = ({ timer }) => (
-  <div>
-    <section className="hero is-primary is-medium">
-      <div className="hero-body">
-        <div className="container has-text-centered">
-          <h1 className="title">
-            Moment Locales
-          </h1>
-          <h1 className="title">
-            0 <span>....</span> <span> { timer }</span>
-          </h1>
-          <div className="z60-times--live">
-            {
-              zones.map((locale, index) => {
-                const mymoment = new moment()
-                mymoment.locale(locale)
-                return (
-                  <Clock key={index} timer={timer} moment={mymoment} locale={locale} />
-                )
-              })
-            }
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-)
-
-const VRScene = () => (
-  <Scene embedded>
-    <a-sky
-      src="https://raw.githubusercontent.com/aframevr/aframe/v0.5.0/examples/boilerplate/panorama/puydesancy.jpg"
-      rotation="0 -130 0"
-    />
-  </Scene>
-)
-
-const Charts = () => (
-  <div>
-    <Doughnut data={chartConfig} />
-  </div>
-)
-
-const style = {
-  parent: { border: '1px solid #ccc', margin: '2%', maxWidth: '40%' }
-}
-const D3 = () => (
-  <div>
-    <VictoryChart
-      style={style}
-      domainPadding={{ x: 30, y: 30 }}
-      height={600}
-      width={600}
-    >
-      <VictoryBar
-        name="bar"
-        style={{ data: { width: 15, fill: 'green' } }}
-        data={[
-          { x: 1, y: 1 },
-          { x: 2, y: 2 },
-          { x: 3, y: 3 },
-          { x: 4, y: 2 },
-          { x: 5, y: 1 }
-        ]}
-      />
-      <VictoryLine
-        name="line"
-        y={() => 0.5}
-        style={{ data: { stroke: 'blue', strokeWidth: 5 } }}
-        label="LINE"
-      />
-    </VictoryChart>
-  </div>
-)
+import Charts from './pages/Charts'
+import D3 from './pages/D3'
+import Home from './pages/Home'
+import VRScene from './pages/VRScene'
 
 const Main = props => (
   <div className="z60-main">
