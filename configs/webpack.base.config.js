@@ -1,11 +1,13 @@
 const path = require('path')
+const webpack = require('webpack')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const config = {
-  entry: [
-    path.resolve(__dirname, '../src/index.js')
-  ],
+  entry: {
+    main: path.resolve(__dirname, '../src/index.js')
+  },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[chunkhash].[name].bundle.js',
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/'
   },
@@ -19,6 +21,18 @@ const config = {
       }
     ]
   },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: (module) => {
+        return module.context && module.context.indexOf('node_modules') >= 0
+      },
+      filename: 'vendor.js'
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static'
+    })
+  ],
   resolve: {
     modules: [
       path.resolve(__dirname, '../src'),

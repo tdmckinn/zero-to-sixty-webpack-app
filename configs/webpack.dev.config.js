@@ -9,12 +9,7 @@ const hmrConfig = {
   entry: ['webpack-hot-middleware/client'],
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
-      inject: true
-    })
+    new webpack.NamedModulesPlugin()
   ]
 }
 
@@ -30,7 +25,14 @@ const commonConfig = {
           { loader: 'sass-loader' }]
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'index.html',
+      inject: true
+    })
+  ]
 }
 
 const config = merge(hmrConfig, baseWebpackConfig, commonConfig)

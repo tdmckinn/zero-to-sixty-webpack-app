@@ -3,13 +3,15 @@ import { Route } from 'react-router-dom'
 
 import 'matter-js'
 
+import asyncComponent from './asyncComponent'
 import { Header, Footer } from './components'
 import './index.scss'
 
-import Charts from './pages/Charts'
 import D3 from './pages/D3'
 import Home from './pages/Home'
 import VRScene from './pages/VRScene'
+
+const ChartView = asyncComponent(() => import('./pages/Charts').then(module => module.default))
 
 const Main = props => (
   <div className="z60-main">
@@ -18,7 +20,7 @@ const Main = props => (
       path="/"
       render={() => <Home {...props} />}
     />
-    <Route path="/charts" component={Charts} />
+    <Route path="/charts" component={ChartView} />
     <Route path="/d3" component={D3} />
     <Route path="/aframe" component={VRScene} />
   </div>

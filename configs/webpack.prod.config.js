@@ -23,7 +23,9 @@ const prodConfig = {
       'process.env.NODE_ENV': '"production"'
     }),
     new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
+      compress: { screw_ie8: true, warnings: false },
+      mangle: { screw_ie8: true },
+      output: { comments: false, screw_ie8: true }
     }),
     new ExtractTextPlugin('static/css/[name].[contenthash].css'),
     new HtmlWebpackPlugin({
