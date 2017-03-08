@@ -6,12 +6,13 @@ import 'matter-js'
 import asyncComponent from './asyncComponent'
 import { Header, Footer } from './components'
 import './index.scss'
-
-import D3 from './pages/D3'
+ 
 import Home from './pages/Home'
-import VRScene from './pages/VRScene'
 
-const ChartView = asyncComponent(() => import('./pages/Charts').then(module => module.default))
+// imports will create chunks via webpack when staticlly anaylized
+const ChartPage = asyncComponent(() => import('./pages/Charts').then(module => module.default))
+const D3Page = asyncComponent(() => import('./pages/D3').then(module => module.default))
+const VRPage = asyncComponent(() => import('./pages/VRScene').then(module => module.default))
 
 const Main = props => (
   <div className="z60-main">
@@ -20,9 +21,9 @@ const Main = props => (
       path="/"
       render={() => <Home {...props} />}
     />
-    <Route path="/charts" component={ChartView} />
-    <Route path="/d3" component={D3} />
-    <Route path="/aframe" component={VRScene} />
+    <Route path="/charts" component={ChartPage} />
+    <Route path="/d3" component={D3Page} />
+    <Route path="/aframe" component={VRPage} />
   </div>
 )
 
