@@ -5,36 +5,36 @@ const baseWebpackConfig = require('./webpack.base.config')
 
 process.env.NODE_ENV = 'devlopment'
 
-const hmrConfig = {
-  entry: ['webpack-hot-middleware/client'],
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
-  ]
-}
-
-const commonConfig = {
-  devtool: 'cheap-module-eval-source-map',
-  module: {
-    rules: [
-      {
-        test: /\.(css|scss|sass)/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' }]
-      }
+module.exports = (env) => {
+  const hmrConfig = {
+    entry: ['webpack-hot-middleware/client'],
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NamedModulesPlugin()
     ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
-      inject: true
-    })
-  ]
+  }
+
+  const commonConfig = {
+    devtool: 'cheap-module-eval-source-map',
+    module: {
+      rules: [
+        {
+          test: /\.(css|scss|sass)/,
+          use: [
+            { loader: 'style-loader' },
+            { loader: 'css-loader' },
+            { loader: 'sass-loader' }]
+        }
+      ]
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: 'index.html',
+        inject: true
+      })
+    ]
+  }
+
+  return merge(hmrConfig, baseWebpackConfig(env), commonConfig)
 }
-
-const config = merge(hmrConfig, baseWebpackConfig, commonConfig)
-
-module.exports = config

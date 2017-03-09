@@ -4,9 +4,10 @@
   "description": "example application showing webpack features",
   "main": "src/index.js",
   "scripts": {
-    "dev": "node dev-server.js",
+    "dev": "node dev-server.js --env.analyzer=true",
     "dev-dashboard": "webpack-dashboard -- node dev-server.js",
-    "build": "webpack --config ./configs/webpack.prod.config.js",
+    "build": "webpack --config ./configs/webpack.prod.config.js --env.analyzer=false",
+    "stats": "webpack --config ./configs/webpack.prod.config.js --display-used-exports --profile --json > stats.json ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tirell Mckinnon <tdmckinn@gmail.com>",

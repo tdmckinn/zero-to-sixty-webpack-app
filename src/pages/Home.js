@@ -1,5 +1,5 @@
 import * as _ from 'lodash'
-import React, { Component } from 'react'
+import React from 'react'
 import moment from 'moment'
 
 import { Clock } from '../components'
@@ -19,7 +19,7 @@ const locales = [
 ]
 const zones = _.shuffle(locales)
 
-const Home = ({ timer }) => (
+const Home = ({ timer, userLang }) => (
   <div>
     <section className="hero is-primary is-medium">
       <div className="hero-body">
@@ -34,9 +34,10 @@ const Home = ({ timer }) => (
             {
               zones.map((locale, index) => {
                 const mymoment = new moment()
+                const isClockMyTime = userLang.toLowerCase().indexOf(locale)
                 mymoment.locale(locale)
                 return (
-                  <Clock key={index} timer={timer} moment={mymoment} locale={locale} />
+                  <Clock key={index} timer={timer} moment={mymoment} locale={locale} isClockMyTime={isClockMyTime} />
                 )
               })
             }

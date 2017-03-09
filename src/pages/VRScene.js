@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import 'aframe'
 import { Entity, Scene } from 'aframe-react'
 

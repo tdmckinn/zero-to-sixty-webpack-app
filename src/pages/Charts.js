@@ -1,7 +1,7 @@
 import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
 
-import chartConfig from '../chartConfig'
+import chartConfig, { unusedChartConfig } from '../chartConfig'
 
 const Charts = () => (
   <div>

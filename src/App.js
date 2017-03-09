@@ -31,13 +31,16 @@ const Main = props => (
 class App extends Component {
   constructor() {
     super()
-    this.state = { timer: 0 }
+    this.state = { 
+      timer: 0,
+      userLang: window.navigator.language
+    }
 
     const interval = setInterval(() => {
       if (this.state.timer === 60) {
         clearInterval(interval)
       } else {
-        this.setState({ timer: this.state.timer + 1 });
+        this.setState({ timer: this.state.timer + 1 })
       }
     }, 200);
   }
@@ -46,7 +49,7 @@ class App extends Component {
     return (
       <div className="z60-app">
         <Header />
-        <Main timer={this.state.timer} />
+        <Main {...this.state} />
         <Footer />
       </div>
     )
