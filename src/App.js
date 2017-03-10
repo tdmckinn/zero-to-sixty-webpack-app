@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+import _ from 'lodash'
 
 import 'matter-js'
 
 import asyncComponent from './asyncComponent'
 import { Header, Footer } from './components'
 import './index.scss'
- 
+
 import Home from './pages/Home'
 
 // imports will create chunks via webpack when staticlly anaylized
@@ -31,7 +32,7 @@ const Main = props => (
 class App extends Component {
   constructor() {
     super()
-    this.state = { 
+    this.state = {
       timer: 0,
       userLang: window.navigator.language
     }
@@ -40,7 +41,7 @@ class App extends Component {
       if (this.state.timer === 60) {
         clearInterval(interval)
       } else {
-        this.setState({ timer: this.state.timer + 1 })
+        this.setState({ timer: _.add(this.state.timer, 1) })
       }
     }, 200);
   }

@@ -1,7 +1,13 @@
-const webpackConfig = require('./configs/webpack.dev.config')
+const webpackDevConfig = require('./configs/webpack.dev.config')
 const express = require('express')
 const webpack = require('webpack')
 const DashboardPlugin = require('webpack-dashboard/plugin')
+
+const webpackConfig = webpackDevConfig(
+  Object.assign({
+    analyzer: 'true'
+  }, process.env
+))
 
 const config = {
   dev: {
