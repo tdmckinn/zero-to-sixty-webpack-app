@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import _ from 'lodash'
+import { add } from 'lodash'
 
 import 'matter-js'
 
@@ -41,7 +41,7 @@ class App extends Component {
       if (this.state.timer === 60) {
         clearInterval(interval)
       } else {
-        this.setState({ timer: _.add(this.state.timer, 1) })
+        this.setState({ timer: add(this.state.timer, 1) })
       }
     }, 200);
   }

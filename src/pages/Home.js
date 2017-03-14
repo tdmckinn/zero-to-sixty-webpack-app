@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { shuffle } from 'lodash'
 import React from 'react'
 import moment from 'moment'
 
@@ -17,7 +17,7 @@ const locales = [
   'si',
   'fo'
 ]
-const zones = _.shuffle(locales)
+const zones = shuffle(locales)
 
 const Home = ({ timer, userLang }) => (
   <div>

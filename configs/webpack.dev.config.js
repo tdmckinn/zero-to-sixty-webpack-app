@@ -15,7 +15,7 @@ module.exports = (env) => {
   }
 
   const commonConfig = {
-    devtool: 'cheap-module-eval-source-map',
+    devtool: '#eval-source-map',
     module: {
       rules: [
         {
