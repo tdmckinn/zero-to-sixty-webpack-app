@@ -1,6 +1,4 @@
-function ConsoleLogOnBuildWebpackPlugin() {
-
-}
+function ConsoleLogOnBuildWebpackPlugin(options = {}) {}
 
 ConsoleLogOnBuildWebpackPlugin.prototype.apply = (compiler) => {
   compiler.plugin('done', (compiler) => {
