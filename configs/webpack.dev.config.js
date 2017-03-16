@@ -3,18 +3,24 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.config')
 
-process.env.NODE_ENV = 'devlopment'
+process.env.NODE_ENV = 'development'
 
 module.exports = (env) => {
+  const baseConfig = baseWebpackConfig(env)
+  const hmrHotEntry = ['webpack-hot-middleware/client']
+
+  Object.keys(baseConfig.entry).forEach((name) => {
+    baseConfig.entry[name] = hmrHotEntry.concat(baseConfig.entry[name])
+  })
+
   const hmrConfig = {
-    entry: ['webpack-hot-middleware/client'],
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NamedModulesPlugin()
     ]
   }
 
-  const commonConfig = {
+  const devconfig = {
     devtool: '#eval-source-map',
     module: {
       rules: [
@@ -27,7 +33,7 @@ module.exports = (env) => {
         }
       ]
     },
-    plugins: [
+    plugins: [ 
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: 'index.html',
@@ -36,5 +42,5 @@ module.exports = (env) => {
     ]
   }
 
-  return merge(hmrConfig, baseWebpackConfig(env), commonConfig)
+  return merge(baseConfig, hmrConfig, devconfig)
 }

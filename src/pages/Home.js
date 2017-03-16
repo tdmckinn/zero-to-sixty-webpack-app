@@ -34,7 +34,7 @@ const Home = ({ timer, userLang }) => (
             {
               zones.map((locale, index) => {
                 const mymoment = new moment()
-                const isClockMyTime = userLang.toLowerCase().indexOf(locale)
+                const isClockMyTime = userLang.toLowerCase().includes(locale)
                 mymoment.locale(locale)
                 return (
                   <Clock key={index} timer={timer} moment={mymoment} locale={locale} isClockMyTime={isClockMyTime} />

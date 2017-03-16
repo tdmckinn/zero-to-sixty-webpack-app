@@ -1,8 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
-process.env.NODE_ENV = 'production'
+const ConsoleLogOnBuildWebpackPlugin = require('./log-plugin')
 
 module.exports = (env) => {
   const config = {
@@ -25,6 +24,7 @@ module.exports = (env) => {
       ]
     },
     plugins: [
+      new ConsoleLogOnBuildWebpackPlugin(),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
       }),
@@ -45,6 +45,9 @@ module.exports = (env) => {
         path.resolve(__dirname, '../node_modules')
       ],
       extensions: ['.js', '.json']
+    },
+    performance: {
+      hints: 'warning'
     }
   }
 

@@ -19,9 +19,8 @@ module.exports = (env) => {
     },
     plugins: [
       new webpack.optimize.UglifyJsPlugin({
-        compress: { screw_ie8: true, warnings: false },
-        mangle: { screw_ie8: true },
-        output: { comments: false, screw_ie8: true }
+        compress: { warnings: false },
+        output: { comments: false }
       }),
       new ExtractTextPlugin('static/css/[name].[contenthash].css'),
       new HtmlWebpackPlugin({

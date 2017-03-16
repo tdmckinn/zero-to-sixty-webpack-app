@@ -5,7 +5,7 @@ const DashboardPlugin = require('webpack-dashboard/plugin')
 
 const webpackConfig = webpackDevConfig(
   Object.assign({
-    analyzer: 'true'
+    analyzer: 'false'
   }, process.env
 ))
 
@@ -26,7 +26,7 @@ compiler.apply(new DashboardPlugin())
 
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
-  quiet: true
+  quiet: false
 })
 
 const hotMiddleware = require('webpack-hot-middleware')(compiler, {
